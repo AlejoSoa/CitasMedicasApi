@@ -19,18 +19,20 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'patient_name' => 'required|string|max:255',
-            'doctor_name' => 'required|string|max:255',
-            'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
-            'reason' => 'required|string|max:255',
-            'status' => 'sometimes|required|in:pendiente, realizada, cancelada',
-        ]);
-        return Appointment::create($data);
-    }
+public function store(Request $request)
+{
+    $data = $request->validate([
+        'patient_name' => 'required|string|max:255',
+        'doctor_name' => 'required|string|max:255',
+        'date' => 'required|date',
+        'time' => 'required|date_format:H:i:s',
+        'reason' => 'required|string|max:255',
+        'status' => 'sometimes|in:pendiente,realizada,cancelada',
+    ]);
+
+    return Appointment::create($data);
+}
+
 
     /**
      * Display the specified resource.
@@ -46,12 +48,12 @@ class AppointmentController extends Controller
     public function update(Request $request, Appointment $cita)
     {
         $data = $request->validate([
-            'patient_name' => 'required|string|max:255',
-            'doctor_name' => 'required|string|max:255',
-            'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
-            'reason' => 'required|string|max:255',
-            'status' => 'sometimes|required|in:pendiente, realizada, cancelada'
+        'patient_name' => 'required|string|max:255',
+        'doctor_name' => 'required|string|max:255',
+        'date' => 'required|date',
+        'time' => 'required|date_format:H:i:s',
+        'reason' => 'required|string|max:255',
+        'status' => 'sometimes|in:pendiente,realizada,cancelada',
         ]);
         $cita->update($data);
         return $cita;

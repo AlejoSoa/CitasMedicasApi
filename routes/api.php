@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('citas', AppointmentController::class);
 
+
 Route::get('/test', function() {
     return ['status' => 'API OK'];
 });
