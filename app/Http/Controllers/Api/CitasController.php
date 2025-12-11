@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class CitasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Jhoyner Alejandro Soa
+
     public function index()
     {
         return Appointment::all();
@@ -32,9 +31,8 @@ class CitasController extends Controller
         return Appointment::create($data);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Jhoyner Alejandro Soa
+
     public function show(Appointment $cita)
     {
         return $cita;

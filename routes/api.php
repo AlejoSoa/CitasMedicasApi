@@ -8,6 +8,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
+// Jhoyner Alejandro Soa
 Route::apiResource('citas', CitasController::class);
 
 Route::get('/test', function() {
