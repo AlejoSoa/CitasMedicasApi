@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('time');
             $table->text('reason');
             $table->enum('status', ['pendiente', 'realizada', 'cancelada']);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

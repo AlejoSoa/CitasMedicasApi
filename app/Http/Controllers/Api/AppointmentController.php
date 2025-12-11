@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+    
 
 class AppointmentController extends Controller
 {
@@ -21,6 +22,7 @@ class AppointmentController extends Controller
      */
 public function store(Request $request)
 {
+    try{
     $data = $request->validate([
         'patient_name' => 'required|string|max:255',
         'doctor_name' => 'required|string|max:255',
@@ -28,12 +30,20 @@ public function store(Request $request)
         'time' => 'required|date_format:H:i:s',
         'reason' => 'required|string|max:255',
         'status' => 'sometimes|in:pendiente,realizada,cancelada',
+        'description' => 'nullable|string|max:500',
     ]);
 
-    return Appointment::create($data);
+  return Appointment::create($data);
+    
 }
+catch(\Exception $e){
+    return response()->json(
+        ['message' => 'Error al crear la cita porfavor rellene todos los campos']
+        
+    );
+    }
 
-
+}
     /**
      * Display the specified resource.
      */
@@ -48,12 +58,13 @@ public function store(Request $request)
     public function update(Request $request, Appointment $cita)
     {
         $data = $request->validate([
-        'patient_name' => 'required|string|max:255',
-        'doctor_name' => 'required|string|max:255',
-        'date' => 'required|date',
-        'time' => 'required|date_format:H:i:s',
-        'reason' => 'required|string|max:255',
-        'status' => 'sometimes|in:pendiente,realizada,cancelada',
+            'patient_name' => 'sometimes|string|max:255',
+            'doctor_name' => 'sometimes|string|max:255',
+            'date' => 'sometimes|date',
+            'time' => 'sometimes|date_format:H:i:s',
+            'reason' => 'sometimes|string|max:255',
+            'status' => 'sometimes|in:pendiente,realizada,cancelada',
+            'description' => 'nullable|string|max:500', 
         ]);
         $cita->update($data);
         return $cita;

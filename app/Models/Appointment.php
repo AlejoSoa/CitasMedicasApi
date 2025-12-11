@@ -13,6 +13,6 @@ class Appointment extends Model
         'time',
         'reason',
         'status',
-
+        'description'
     ];
 }
