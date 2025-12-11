@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
-class CitasController extends Controller
+class AppointmentController extends Controller
 {
     // Jhoyner Alejandro Soa
 
@@ -24,9 +24,9 @@ class CitasController extends Controller
             'patient_name' => 'required|string|max:255',
             'doctor_name' => 'required|string|max:255',
             'date' => 'required|date',
-            'time' => 'required|time',
+            'time' => 'required|date_format:H:i',
             'reason' => 'required|string|max:255',
-            'status' => 'sometime|required|in:pendiente, realizada, cancelada',
+            'status' => 'sometimes|in:pendiente, realizada, cancelada',
         ]);
         return Appointment::create($data);
     }
@@ -47,9 +47,9 @@ class CitasController extends Controller
             'patient_name' => 'required|string|max:255',
             'doctor_name' => 'required|string|max:255',
             'date' => 'required|date',
-            'time' => 'required|time',
+            'time' => 'required|date_format:H:i',
             'reason' => 'required|string|max:255',
-            'status' => 'sometime|required|in:pendiente, realizada, cancelada'
+            'status' => 'sometimes|in:pendiente, realizada, cancelada'
         ]);
         $cita->update($data);
         return $cita;
